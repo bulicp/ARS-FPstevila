@@ -1,2 +1,2 @@
-# ARS-FPstevila
-FP stevila in aritmetika - predmet ARS, UL FRI
+# ARS koda
+koda pri predmetu predmet ARS, UL FRI, 2022
