@@ -236,7 +236,7 @@ void IzpisiZanimiva() {
   float mnf = *((float *)&mn);
   IzpisiFPsteviloScient(mnf, 0);
   printf("\n");
-  for (int i = 0; i <= 3; ++i) IzpisiFPstevilo(mnf, i);
+  for (int i = 0; i <= 3; ++i) IzpisiFPsteviloScient(mnf, i);
   printf("...\n");
 
   printf("\n");
