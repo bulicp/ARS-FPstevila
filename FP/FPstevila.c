@@ -222,17 +222,22 @@ void IzpisiZanimiva() {
 
   printf("\n");
   printf("\n=========== Vrednosti okrog ničle : ==========\n");
-  for (int i = 3; i >= 0; --i)
+  for (int i = 5; i >= 0; --i)
     if(i) IzpisiFPsteviloScient(0.0f, i);
     else IzpisiFPstevilo(0.0f, i);
-  for (int i = 0; i <= 3; ++i)
+  for (int i = 0; i <= 5; ++i)
     if(i) IzpisiFPsteviloScient(0.0f, i + 0x80000000);
     else IzpisiFPstevilo(0.0f, i);
 
 
   printf("\n");
   printf("\n=========== Najmanjša normalizirana abs vrednost : ==========\n");
-  IzpisiFPsteviloScient(1.17549435e-38, 0);
+  int mn = 0x00800000; // 0 00000001 00.0, E=0x01 (-126), M=00...0
+  float mnf = *((float *)&mn);
+  IzpisiFPsteviloScient(mnf, 0);
+  printf("\n");
+  for (int i = 0; i <= 3; ++i) IzpisiFPstevilo(mnf, i);
+  printf("...\n");
 
   printf("\n");
   printf("\n=========== Prvo število brez desetiških decimalk : ==========\n");
@@ -245,7 +250,9 @@ void IzpisiZanimiva() {
 
   printf("\n");
   printf("\n=========== Največje pozitivno celo liho število : ==========\n");
-  IzpisiFPstevilo(16777215.0f, 0); // to se zgodi, ko je E = 0x97 (24) - od takrat so samo potence števila 2, ki množijo mantiso brez decimalk 
+  int m = 0x4B7FFFFF; // 0 0100 1011 11...1 - E=0x96 (23), M = 11...1 - to je najvecje liho celo stevilo
+  float mf = *((float *)&m);
+  IzpisiFPstevilo(mf, 0); // to se zgodi, ko je E = 0x97 (24) - od takrat so samo potence števila 2, ki množijo mantiso brez decimalk 
   printf("...\n");
   for (int i = -3; i <= 6; ++i) IzpisiFPstevilo(16777215.0f, i);
   printf("...\n");
@@ -253,9 +260,9 @@ void IzpisiZanimiva() {
 
   printf("\n");
   printf("\n=========== Največja absolutna vrednost : ==========\n");
-  int m = 0x7F7FFFFF; // 0 11111110 11...1 - M=0xFE - to je max mozna mantisa, 0xFF oznacuje neskoncnost oz. NaN
-  float mf = *((float *)&m);
-  IzpisiFPsteviloScient(3.40282347e+38, 0);
+  m = 0x7F7FFFFF; // 0 11111110 11...1 - M=0xFE - to je max mozna mantisa, 0xFF oznacuje neskoncnost oz. NaN
+  mf = *((float *)&m);
+  IzpisiFPsteviloScient(mf, 0);
 
   printf("\n======= FP števila na zgornjem robu : ==========\n");
   printf("...\n");
